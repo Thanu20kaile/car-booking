@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Cars Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, button {
+            margin-top: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Lucky Cars</h1>
+        <p>Book your car with us now!</p>
+        <form id="carBookingForm">
+            <!-- Customer Details -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            <!-- Car Details -->
+            <label for="carModel">Car Model:</label>
+            <select id="carModel" name="carModel" required>
+                <option value="" disabled selected>Select car model</option>
+                <option value="sedan">Sedan (₹1000 - 12 hrs, ₹1800 - 24 hrs)</option>
+                <option value="suv">SUV (₹1500 - 12 hrs, ₹2500 - 24 hrs)</option>
+                <option value="hatchback">Hatchback (₹800 - 12 hrs, ₹1400 - 24 hrs)</option>
+            </select>
+
+            <label for="duration">Booking Duration:</label>
+            <select id="duration" name="duration" required>
+                <option value="" disabled selected>Select duration</option>
+                <option value="12hrs">12 Hours</option>
+                <option value="24hrs">24 Hours</option>
+            </select>
+
+            <label>Driver Required:</label>
+            <select id="driverOption" name="driverOption" required>
+                <option value="" disabled selected>Choose an option</option>
+                <option value="withDriver">With Driver</option>
+                <option value="withoutDriver">Without Driver</option>
+            </select>
+
+            <label for="bookingDate">Booking Date:</label>
+            <input type="date" id="bookingDate" name="bookingDate" required>
+
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('carBookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const carModel = document.getElementById('carModel').value;
+            const duration = document.getElementById('duration').value;
+            const driverOption = document.getElementById('driverOption').value;
+
+            let price;
+            if (carModel === 'sedan') {
+                price = duration === '12hrs' ? 1000 : 1800;
+            } else if (carModel === 'su') {
+                price = duration === '12hrs' ? 1500 : 2500;
+            } else if (carModel === 'shift') {
+                price = duration === '12hrs' ? 800 : 1400;
+            }
+
+            alert(`Thank you, ${name}! Your booking for a ${carModel.toUpperCase()} (${duration}, ${driverOption}) is confirmed. Total Price: ₹${price}.`);
+        });
+    </script>
+</body>
+</html>
